@@ -1,13 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const mdb = require("../lib/MongoConnection")
+const MongoConnection = require("../lib/MongoConnection.js")
 
 
-router.get('/', function(req, res) {
-  mdb.name = "sample_mfilx"
-  const collection = mdb.collection("movies")
-  console.log(mdb.name);
-  res.send('index');
+router.get('/', async(req, res) => {
+  const mdb = await MongoConnection.connect()
+  console.log(mdb);
+  res.send("123")
 });
 
 module.exports = router;
