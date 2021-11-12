@@ -1,10 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const mdb = require("../lib/MongoConnection")
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  console.log(process.env.PORT);
-  res.render('index', { title: process.env.OS });
+
+router.get('/', function(req, res) {
+  mdb.name = "sample_mfilx"
+  const collection = mdb.collection("movies")
+  console.log(mdb.name);
+  res.send('index');
 });
 
 module.exports = router;

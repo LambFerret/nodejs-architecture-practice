@@ -3,16 +3,28 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "set NODE_ENV=main && pm2 start ./bin/www",
-    "dev": "set NODE_ENV=development && pm2 start ./bin/www --watch"
+    "lint": "npx prettier *.js && eslint *.js --fix",
+    "start": "set NODE_ENV=release && pm2 start app.js",
+    "dev": "set NODE_ENV=dev && pm2 start app.js --watch"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^10.0.0",
     "express": "~4.16.1",
+    "express-handlebars": "^5.3.4",
+    "express-session": "^1.17.2",
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
+    "mongodb": "^4.1.4",
     "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.3.1",
+    "@typescript-eslint/parser": "^5.3.1",
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.3",
+    "prettier": "^2.4.1"
   }
 }
