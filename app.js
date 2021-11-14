@@ -13,6 +13,7 @@ app.engine('hbs', handlebars({
     defaultLayout: 'layout',
 }))
 app.set('view engine', 'hbs');
+app.set("json spaces", 2)
 app.use(express.json());
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: false }));
