@@ -4,7 +4,7 @@ exports.makeExpressCallback = (controller) => {
             body: req.body,
             query: req.query,
             params: req.params,
-            ip: req, ip,
+            ip: req.ip,
             method: req.method,
             path: req.path,
             headers: {

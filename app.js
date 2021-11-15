@@ -6,9 +6,9 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const handlebars = require('express-handlebars');
 const router = require('./routes/index.js');
-// const { postMovie } = require('./src/controllers/index.js');
-// const { makeExpressCallback } = require('./src/callback/index.js');
+const { getMovie } = require('./src/controllers/index.js');
 
+const { makeExpressCallback } = require('./src/callback/index.js');
 
 const port = 4004;
 const mode = process.env.NODE_ENV;
@@ -50,8 +50,8 @@ app.use(async (req, res, next) => {
   res.header('Access-Control-Allow-Headers', 'GET, PUT, POST, DELETE');
   next();
 });
-// app.get('/', makeExpressCallback(postMovie));
-app.use(router);
+app.get('/', makeExpressCallback(getMovie));
+// app.use(router);
 
 // 404 error
 app.use((req, res, next) => {
