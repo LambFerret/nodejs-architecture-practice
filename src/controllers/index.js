@@ -3,9 +3,12 @@ const { makeGetmovie } = require("./get-movie")
 const { makePostMovie } = require("./post-movie")
 
 
-exports.postMovie = makePostMovie({addMovie})
-exports.getMovie = makeGetmovie({showMovie})
+const postMovie = makePostMovie({addMovie})
+const getMovie = makeGetmovie({showMovie})
 
-// exports.commentController = Object.freeze({
-//     getMovie,
-// })
+const movieController = Object.freeze({
+    getMovie,
+    postMovie,
+})
+
+module.exports = {movieController, getMovie, postMovie}

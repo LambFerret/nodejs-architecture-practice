@@ -1,14 +1,16 @@
 const { makeMovieDB } = require("../dataAccess/DB");
 const { makeCreateMovie } = require("./addMovie");
-const { makeHandleModeration } = require("./handleModeration");
-const { makeListMovies } = require("./listMovie");
+const { makeListMovie } = require("./listMovie");
 
 const movieDB = makeMovieDB()
 
-const handleModeration = makeHandleModeration()
-// exports.addMovie = makeCreateMovie({ makeMovieDB, handleModeration })
-exports.showMovie = makeListMovies({ movieDB })
+const addMovie = makeCreateMovie({ makeMovieDB })
+const showMovie = makeListMovie({ movieDB })
 
-// exports.movieService = Object.freeze({
-//     showMovie,
-// })
+
+const movieService = Object.freeze({
+    showMovie,
+    addMovie,
+})
+
+module.exports = {movieService, showMovie, addMovie}

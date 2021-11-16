@@ -3,7 +3,7 @@ const MongoConnection = require("./MongoConnection")
 
 exports.makeMovieDB = () => {
     return Object.freeze({
-        // insert,
+        insert,
         findAll,
     })
 

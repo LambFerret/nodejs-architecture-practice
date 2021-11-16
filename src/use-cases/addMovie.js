@@ -1,36 +1,29 @@
 const { createMovie } = require('../movies')
-exports.makeCreateMovie = ({ movieDB, handleModeration }) => {
+exports.makeCreateMovie = ({ movieDB }) => {
     return async function addMovie(MovieInfo) {
-        const movie = createMovie(MovieInfo)
-        const exists = await movieDB.findByID({ ID: movie.getID() })
+        const exists = await movieDB.findByTitle({ title: movie.getTitle() })
         if (exists) {
             return exists
         }
-        const moderated = await handleModeration({ movie })
-        const movieSource = moderated.getSource()
+        const awardNest = MovieInfo.getAwards()
+        const movieSource = MovieInfo.getSource()
         return movieDB.insert({
-            _id : moderated.getID,
+            title: MovieInfo.getTitle(),
+            year: MovieInfo.getYear(),
+            direactors: MovieInfo.getDireactors(),
+            num_mfilx_comments: MovieInfo.getCommentsNum(),
+            awards:{
+                ip:awardNest.getWins(),
+                browser:awardNest.getNominations(),
+                referrer:awardNest.getText(),
+            },
             source:{
                 ip:movieSource.getIP(),
                 browser:movieSource.getBrowser(),
                 referrer:movieSource.getReferrer(),
             },
-            plot: moderated.getPlot(),
-            genres: moderated.getGenres(),
-            runtime: moderated.getRuntime(),
-            cast: moderated.getCast(),
-            num_mfilx_comments: moderated.getCommentsNum(),
-            title: moderated.getTitle(),
-            countries: moderated.getCountries(),
-            released: moderated.getReleased(),
-            direactors: moderated.getDireactors(),
-            rated: moderated.getRated(),
-            awards: moderated.getAwards(),
-            poster: moderated.getPoster(),
-            languages: moderated.getLanguages(),
-            lastupdated: moderated.getLastupdated(),
-            isDeleted: moderated.getisDeleted(),
-
+            lastupdated: MovieInfo.getLastupdated(),
+            isDeleted: MovieInfo.getisDeleted(),
         })
     }
 }
