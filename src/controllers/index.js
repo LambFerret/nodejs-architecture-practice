@@ -1,4 +1,4 @@
-const {addMovie, updateMovie, showMovie, deleteMovie} = require("../use-cases/index")
+const {addMovie, updateMovie, showMovie, deleteMovie} = require("../use-cases")
 const { makeGetmovie } = require("./get-movie")
 const { makePostMovie } = require("./post-movie")
 

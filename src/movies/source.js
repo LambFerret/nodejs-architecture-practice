@@ -1,5 +1,5 @@
 exports.buildMakeSource = ({ isValidIP }) => {
-    return function buildMakeSource({ ip, browser, referrer } = {}) {
+    return function makeSource({ ip, browser, referrer } = {}) {
         if (!ip) {
             throw new Error("Movie source must contain an IP.")
         }

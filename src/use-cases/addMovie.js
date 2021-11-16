@@ -1,4 +1,4 @@
-const { createMovie } = require('../movies/index')
+const { createMovie } = require('../movies')
 exports.makeCreateMovie = ({ movieDB, handleModeration }) => {
     return async function addMovie(MovieInfo) {
         const movie = createMovie(MovieInfo)

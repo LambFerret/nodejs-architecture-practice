@@ -1,21 +1,12 @@
-exports.buildCreateMovie = ({ md5, makeSource }) => {
+exports.buildCreateMovie = ({ makeSource, makeNest }) => {
     return function CreateMovie({
-        _id,
-        plot,
-        genres,
-        runtime,
-        cast,
-        num_mfilx_comments,
         title,
-        countries,
-        released,
-        direactors,
-        rated,
-        awards,   // nominations, text
-        poster,
-        languages,
-        lastupdated = Date.now(),
         year,
+        direactors,
+        num_mfilx_comments,
+        awards,   // nominations, wins
+        source,
+        lastupdated = Date.now(),
         isDeleted = false,
 
     } = {}) {
@@ -25,30 +16,21 @@ exports.buildCreateMovie = ({ md5, makeSource }) => {
         if (!year) {
             throw new Error("year must be filled")
         }
-
-        const validSource = makeSource(source)
-        const deletedText = `It's private by request of copyright holder`
-        makeHash = () => {
-            return md5(
-                `${title} + ${year}`
-            )
+        if (!direactors) {
+            throw new Error("direactors must be filled")
         }
+        if (!source) {
+            throw new Error('Comment must have a source.')
+        }
+        const NestedAwards = makeAwards(awards)
+        const validSource = makeSource(source)
         return Object.freeze({
-            getID: () => _id || (_id = makeHash()),
-            getSource: ()=> validSource,
-            getPlot: () => plot,
-            getGenres: () => genres,
-            getRuntime: () => runtime,
-            getCast: () => cast,
-            getCommentsNum: () => num_mfilx_comments,
             getTitle: () => title,
-            getCountries: () => countries,
-            getReleased: () => released,
+            getYear: () => year,
             getDireactors: () => direactors,
-            getRated: () => rated,
-            getAwards: () => awards,
-            getPoster: () => poster,
-            getLanguages: () => languages,
+            getCommentsNum: () => num_mfilx_comments,
+            getAwards: () => NestedAwards,
+            getSource: () => validSource,
             getLastupdated: () => lastupdated,
             getisDeleted: () => isDeleted,
             deleted: () => {
@@ -61,3 +43,5 @@ exports.buildCreateMovie = ({ md5, makeSource }) => {
 
     }
 }
+
+
