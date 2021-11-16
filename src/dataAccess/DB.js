@@ -1,4 +1,7 @@
-exports.makeMovieDB = ({ makeDB }) => {
+const MongoConnection = require("./MongoConnection")
+
+
+exports.makeMovieDB = () => {
     return Object.freeze({
         // insert,
         findAll,
@@ -14,10 +17,9 @@ exports.makeMovieDB = ({ makeDB }) => {
     }
 
     async function findAll() {
-        const db = await makeDB()
-        console.log(db);
-        const result = await db.collection("movies")
-        const value = await result.find()
+        const mdb = await MongoConnection.connect()
+        const result = mdb.collection("movies")
+        const value = result.find()
         return (await value.toArray())
     }
 }

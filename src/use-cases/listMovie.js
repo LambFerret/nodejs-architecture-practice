@@ -1,6 +1,5 @@
 exports.makeListMovies = ({ movieDB }) => {
-    return async function listMovies ({postID}={}){
-        console.log(await movieDB);
+    return async function listMovies (){
         const movies = await movieDB.findAll()
         return movies
         // if(!postID){
