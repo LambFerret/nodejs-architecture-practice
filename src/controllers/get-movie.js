@@ -5,7 +5,7 @@ exports.makeGetmovie = ({showMovie})=> {
         }
         try {
             const postMovies = await showMovie({
-                postID : httpRequest.query.postID
+                title : httpRequest.params.title
             })
             return {
                 headers,
