@@ -11,7 +11,7 @@ exports.buildCreateMovie = ({ makeSource, makeNest }) => {
 
     } = {}) {
         if (!title) {
-            throw new Error("title must be!! filled")
+            throw new Error("title must be filled")
         }
         if (!year) {
             throw new Error("year must be filled")

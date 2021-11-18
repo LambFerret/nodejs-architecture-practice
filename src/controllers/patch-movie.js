@@ -18,7 +18,7 @@ exports.makePatchMovie = ({ updateMovie }) => {
                     'Content-Type': 'application/json',
                     'Last=Modified': new Date(patched.lastupdated).toUTCString()
                 },
-                statusCode: 200,
+                StatusCode: 200,
                 body: { patched }
             }
         } catch (e) {
@@ -28,7 +28,7 @@ exports.makePatchMovie = ({ updateMovie }) => {
                   headers: {
                     'Content-Type': 'application/json'
                   },
-                  statusCode: 404,
+                  StatusCode: 404,
                   body: {
                     error: e.message
                   }
@@ -38,7 +38,7 @@ exports.makePatchMovie = ({ updateMovie }) => {
                 headers: {
                   'Content-Type': 'application/json'
                 },
-                statusCode: 400,
+                StatusCode: 400,
                 body: {
                   error: e.message
                 }

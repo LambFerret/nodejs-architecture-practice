@@ -1,6 +1,7 @@
 exports.makeListMovie = ({ movieDB }) => {
-    return async function listMovies ({title}={}){
+    return async function listMovie({title}){
         const movies = await movieDB.findByTitle(title)
+
         return movies
     }
 }

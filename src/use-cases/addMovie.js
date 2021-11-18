@@ -8,16 +8,15 @@ exports.makeAddMovie = ({ movieDB }) => {
         }
         const awardNest = movie.getAwards()
         const movieSource = movie.getSource()
-        console.log(`movieSource is ${movieSource}`);
         return movieDB.insert({
             title: movie.getTitle(),
             year: movie.getYear(),
             direactors: movie.getDireactors(),
             num_mfilx_comments: movie.getCommentsNum(),
             awards:{
-                ip:awardNest.getWins(),
-                browser:awardNest.getNominations(),
-                referrer:awardNest.getText(),
+                wins:awardNest.getWins(),
+                nominations:awardNest.getNominations(),
+                text:awardNest.getText(),
             },
             source:{
                 ip:movieSource.getIP(),

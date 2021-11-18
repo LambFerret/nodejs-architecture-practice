@@ -1,22 +1,22 @@
-exports.makeGetmovie = ({showMovie})=> {
-    return async function getMovies(httpRequest){
+exports.makeGetmovie = ({listMovie})=> {
+    return async function getMovie(httpRequest){
         const headers = {
             'Content-Type':'application/json'
         }
         try {
-            const postMovies = await showMovie({
+            const postMovies = await listMovie({
                 title : httpRequest.params.title
             })
             return {
                 headers,
-                statusCode:200,
+                StatusCode:200,
                 body: postMovies
             }
         } catch (e){
             console.error(e);
             return {
                 headers,
-                statusCode:400,
+                StatusCode:400,
                 body:{
                     error:e.message
                 }

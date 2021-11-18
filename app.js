@@ -44,17 +44,6 @@ app.use(async (req, res, next) => {
 
 app.use(router);
 
-// 404 error
-app.use((req, res, next) => {
-  next(createError(404));
-});
-// else error
-app.use((err, req, res, next) => {
-  console.log(err.status);
-  res.status(err.status || 500);
-  res.json({ error: err });
-});
-
 app.listen(port, () => {
   console.log(`mode:${mode}, port:${port}`);
 });

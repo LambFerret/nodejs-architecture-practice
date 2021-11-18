@@ -7,14 +7,14 @@ const { makeUpdateMovie } = require("./updateMovie");
 
 const movieDB = makeMovieDB()
 const addMovie = makeAddMovie({ movieDB })
-const showMovie = makeListMovie({ movieDB })
+const listMovie = makeListMovie({ movieDB })
 const updateMovie = makeUpdateMovie({ movieDB })
 // const removeMovie = makeRemoveMovie({ movieDB })
 const movieService = Object.freeze({
-    showMovie,
+    listMovie,
     addMovie,
     updateMovie,
     // removeMovie,
 })
 
-module.exports = { movieService, showMovie, addMovie, updateMovie } //, removeMovie
+module.exports = { movieService, listMovie, addMovie, updateMovie } //, removeMovie
