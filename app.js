@@ -50,6 +50,7 @@ app.use((req, res, next) => {
 });
 // else error
 app.use((err, req, res, next) => {
+  console.log(err.status);
   res.status(err.status || 500);
   res.json({ error: err });
 });

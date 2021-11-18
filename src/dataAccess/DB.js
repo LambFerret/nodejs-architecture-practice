@@ -18,9 +18,8 @@ exports.makeMovieDB = () => {
 
     async function insert({ ...movieInfo }) {
         const mdb = await init()
-        const result = mdb.insertOne({ ...movieInfo })
-        const { ...insertInfo } = result.ops[0]
-        return { ...insertInfo }
+        const result = await mdb.insertOne({ ...movieInfo })
+        return { ...result }
     }
 
     async function findAll() {

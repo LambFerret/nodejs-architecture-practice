@@ -12,6 +12,7 @@ exports.makePostMovie = ({ addMovie }) => {
                 ...movieInfo,
                 source
             })
+            console.log(posted);
             if(movieInfo.title != httpRequest.params.title){
                 console.log(`body title is ${movieInfo.title}, but params title is ${httpRequest.params.title}`);
                 throw new Error("req.params.title doesnt match with body.title")
@@ -19,10 +20,9 @@ exports.makePostMovie = ({ addMovie }) => {
             return {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Last-Modified': new Date(posted.lastupdated).toUTCString()
                 },
                 StatusCode: 201,
-                body: { posted }
+                body:  posted 
             }
         } catch (e) {
             console.log(e);

@@ -16,15 +16,14 @@ exports.makeExpressCallback = (controller) => {
         controller(httpRequest)
             .then(httpResponse => {
                 if (httpResponse.headers) {
-                    res.set(httpResponse.headers)
+                res.set(httpResponse.headers)
                 }
                 res.type('json')
-                res.status(httpResponse.statusCode).send(httpResponse.body)
+                res.status(httpResponse.StatusCode).send(httpResponse.body)
             })
-            .catch(e => res.status(500).send({
+            .catch((e) => res.status(500).send({
                  error: 'An unknown error occured.',
                  message: e,
-                 body: req.body
                 }))
     }
 }
