@@ -1,17 +1,19 @@
 const { createMovie } = require('../movies')
-exports.makeCreateMovie = ({ movieDB }) => {
+exports.makeAddMovie = ({ movieDB }) => {
     return async function addMovie(MovieInfo) {
-        const exists = await movieDB.findByTitle({ title: movie.getTitle() })
+        const movie = createMovie(MovieInfo)
+        const exists = await movieDB.findByTitle(movie.getTitle())
         if (exists) {
             return exists
         }
-        const awardNest = MovieInfo.getAwards()
-        const movieSource = MovieInfo.getSource()
+        const awardNest = movie.getAwards()
+        const movieSource = movie.getSource()
+        console.log(`movieSource is ${movieSource}`);
         return movieDB.insert({
-            title: MovieInfo.getTitle(),
-            year: MovieInfo.getYear(),
-            direactors: MovieInfo.getDireactors(),
-            num_mfilx_comments: MovieInfo.getCommentsNum(),
+            title: movie.getTitle(),
+            year: movie.getYear(),
+            direactors: movie.getDireactors(),
+            num_mfilx_comments: movie.getCommentsNum(),
             awards:{
                 ip:awardNest.getWins(),
                 browser:awardNest.getNominations(),
@@ -22,8 +24,8 @@ exports.makeCreateMovie = ({ movieDB }) => {
                 browser:movieSource.getBrowser(),
                 referrer:movieSource.getReferrer(),
             },
-            lastupdated: MovieInfo.getLastupdated(),
-            isDeleted: MovieInfo.getisDeleted(),
+            lastupdated: movie.getLastupdated(),
+            isDeleted: movie.getisDeleted(),
         })
     }
 }

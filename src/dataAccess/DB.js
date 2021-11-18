@@ -34,7 +34,7 @@ exports.makeMovieDB = () => {
         if (_title === undefined) {
             return mdb.find().toArray()
         }
-        const found = mdb.find({ "title": _title }).toArray()
+        const found =await mdb.find({ "title": _title }).toArray()
         if (found.length === 0) {
             return null
         }

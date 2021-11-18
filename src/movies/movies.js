@@ -1,5 +1,5 @@
 exports.buildCreateMovie = ({ makeSource, makeNest }) => {
-    return function CreateMovie({
+    return function createMovie({
         title,
         year,
         direactors,
@@ -11,18 +11,18 @@ exports.buildCreateMovie = ({ makeSource, makeNest }) => {
 
     } = {}) {
         if (!title) {
-            throw new Error("title must be filled")
+            throw new Error("title must be!! filled")
         }
         if (!year) {
             throw new Error("year must be filled")
         }
-        if (!direactors) {
+        if (direactors==[]) {
             throw new Error("direactors must be filled")
         }
         if (!source) {
             throw new Error('Comment must have a source.')
         }
-        const NestedAwards = makeAwards(awards)
+        const NestedAwards = makeNest(awards)
         const validSource = makeSource(source)
         return Object.freeze({
             getTitle: () => title,

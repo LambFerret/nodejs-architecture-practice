@@ -1,13 +1,12 @@
 const { makeMovieDB } = require("../dataAccess/DB");
-const { makeCreateMovie } = require("./addMovie");
+const { makeAddMovie } = require("./addMovie");
 const { makeListMovie } = require("./listMovie");
 const { makeUpdateMovie } = require("./updateMovie");
 // const { makeRemoveMovie } = require("./removeMovie");
 
 
 const movieDB = makeMovieDB()
-
-const addMovie = makeCreateMovie({ movieDB })
+const addMovie = makeAddMovie({ movieDB })
 const showMovie = makeListMovie({ movieDB })
 const updateMovie = makeUpdateMovie({ movieDB })
 // const removeMovie = makeRemoveMovie({ movieDB })

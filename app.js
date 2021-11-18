@@ -10,11 +10,6 @@ const router = require('./routers');
 const port = 4004;
 const mode = process.env.NODE_ENV;
 
-app.engine('hbs', handlebars({
-  extname: 'hbs',
-  defaultLayout: 'layout',
-}));
-app.set('view engine', 'hbs');
 app.set('json spaces', 2);
 app.use(express.json());
 app.use(logger('dev'));
@@ -53,14 +48,12 @@ app.use(router);
 app.use((req, res, next) => {
   next(createError(404));
 });
-
 // else error
 app.use((err, req, res, next) => {
   res.status(err.status || 500);
-  res.render('error', {
-    error: err,
-  });
+  res.json({ error: err });
 });
+
 app.listen(port, () => {
   console.log(`mode:${mode}, port:${port}`);
 });

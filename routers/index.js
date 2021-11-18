@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { makeExpressCallback } = require('../src/costomCallback')
+const { makeExpressCallback } = require('../src/customCallback')
 const { getMovie, postMovie, updateMovie } = require('../src/controllers')//deleteMovie
 
 router.get('/', makeExpressCallback(getMovie))

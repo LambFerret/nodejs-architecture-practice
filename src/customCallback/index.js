@@ -21,6 +21,10 @@ exports.makeExpressCallback = (controller) => {
                 res.type('json')
                 res.status(httpResponse.statusCode).send(httpResponse.body)
             })
-            .catch(e => res.status(500).send({ error: 'An unknown error occured.' }))
+            .catch(e => res.status(500).send({
+                 error: 'An unknown error occured.',
+                 message: e,
+                 body: req.body
+                }))
     }
 }

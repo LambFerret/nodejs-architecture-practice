@@ -1,6 +1,7 @@
 exports.makePostMovie = ({ addMovie }) => {
     return async function postMovie(httpRequest) {
         try {
+
             const { source = {}, ...movieInfo } = httpRequest.body
             source.ip = httpRequest.ip
             source.browser = httpRequest.headers['User-Agent']
@@ -11,6 +12,10 @@ exports.makePostMovie = ({ addMovie }) => {
                 ...movieInfo,
                 source
             })
+            if(movieInfo.title != httpRequest.params.title){
+                console.log(`body title is ${movieInfo.title}, but params title is ${httpRequest.params.title}`);
+                throw new Error("req.params.title doesnt match with body.title")
+            }
             return {
                 headers: {
                     'Content-Type': 'application/json',

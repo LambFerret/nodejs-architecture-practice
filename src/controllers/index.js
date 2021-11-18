@@ -1,5 +1,6 @@
 const { addMovie, showMovie, updateMovie } = require("../use-cases") //removeMovie
 const { makeGetmovie } = require("./get-movie")
+const { notFound } = require("./not-found")
 const { makePatchMovie } = require("./patch-movie")
 const { makePostMovie } = require("./post-movie")
 // const { makeDeleteMovie } = require("./post-movie")
@@ -15,6 +16,7 @@ const movieController = Object.freeze({
     postMovie,
     patchMovie,
     // deleteMovie,
+    notFound,
 })
 
-module.exports = { movieController, getMovie, postMovie, updateMovie } //deleteMovie
+module.exports = { movieController, getMovie, postMovie, updateMovie, notFound } //deleteMovie

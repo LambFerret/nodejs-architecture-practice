@@ -6,9 +6,9 @@ const { buildMakeNest } = require("./Awards")
 
 const makeNest = buildMakeNest({ sanitize })
 const makeSource = buildMakeSource({ isValidIP })
-const CreateMovie = buildCreateMovie({ makeSource, makeNest })
 
-exports = CreateMovie
+exports.createMovie = buildCreateMovie({ makeSource, makeNest })
+
 
 function isValidIP(ip) {
     return ipRegex({ exact: true }).test(ip)
