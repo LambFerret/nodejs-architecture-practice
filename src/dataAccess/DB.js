@@ -44,11 +44,10 @@ exports.makeMovieDB = () => {
     async function remove({ ...movieInfo }) {
         const mdb = await init()
         const result = mdb.insertOne({ ...movieInfo })
-        const { ...insertInfo } = result.ops[0]
-        return { ...insertInfo }
+        return { ...result }
     }
 
-    async function update(title, { ...movieInfo }) {
+    async function update({title:title,  ...movieInfo} ) {
         const mdb = await init()
         const result = await mdb.updateOne({ title }, { $set: { ...movieInfo } })
         return result.modifiedCount > 0 ? {...movieInfo} : null

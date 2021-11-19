@@ -2,8 +2,8 @@ exports.buildCreateMovie = ({ makeSource, makeNest }) => {
     return function createMovie({
         title,
         year,
-        direactors,
-        num_mfilx_comments,
+        directors,
+        num_mflix_comments,
         awards,   // nominations, wins
         source,
         lastupdated = Date.now(),
@@ -16,7 +16,7 @@ exports.buildCreateMovie = ({ makeSource, makeNest }) => {
         if (!year) {
             throw new Error("year must be filled")
         }
-        if (direactors==[]) {
+        if (directors==null) {
             throw new Error("direactors must be filled")
         }
         if (!source) {
@@ -27,8 +27,8 @@ exports.buildCreateMovie = ({ makeSource, makeNest }) => {
         return Object.freeze({
             getTitle: () => title,
             getYear: () => year,
-            getDireactors: () => direactors,
-            getCommentsNum: () => num_mfilx_comments,
+            getDirectors: () => directors,
+            getCommentsNum: () => num_mflix_comments,
             getAwards: () => NestedAwards,
             getSource: () => validSource,
             getLastupdated: () => lastupdated,

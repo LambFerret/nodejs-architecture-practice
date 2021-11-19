@@ -12,7 +12,7 @@ exports.makePostMovie = ({ addMovie }) => {
                 ...movieInfo,
                 source
             })
-            if(movieInfo.title != httpRequest.params.title){
+            if (movieInfo.title != httpRequest.params.title) {
                 console.log(`body title is ${movieInfo.title}, but params title is ${httpRequest.params.title}`);
                 throw new Error("req.params.title doesnt match with body.title")
             }
@@ -21,7 +21,7 @@ exports.makePostMovie = ({ addMovie }) => {
                     'Content-Type': 'application/json',
                 },
                 StatusCode: 201,
-                body:  posted 
+                body: posted
             }
         } catch (e) {
             console.log(e);

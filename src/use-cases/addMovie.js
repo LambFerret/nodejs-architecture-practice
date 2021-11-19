@@ -11,17 +11,17 @@ exports.makeAddMovie = ({ movieDB }) => {
         return movieDB.insert({
             title: movie.getTitle(),
             year: movie.getYear(),
-            direactors: movie.getDireactors(),
-            num_mfilx_comments: movie.getCommentsNum(),
-            awards:{
-                wins:awardNest.getWins(),
-                nominations:awardNest.getNominations(),
-                text:awardNest.getText(),
+            directors: movie.getDirectors(),
+            num_mflix_comments: movie.getCommentsNum(),
+            awards: {
+                wins: awardNest.getWins(),
+                nominations: awardNest.getNominations(),
+                text: awardNest.getText(),
             },
-            source:{
-                ip:movieSource.getIP(),
-                browser:movieSource.getBrowser(),
-                referrer:movieSource.getReferrer(),
+            source: {
+                ip: movieSource.getIP(),
+                browser: movieSource.getBrowser(),
+                referrer: movieSource.getReferrer(),
             },
             lastupdated: movie.getLastupdated(),
             isDeleted: movie.getisDeleted(),

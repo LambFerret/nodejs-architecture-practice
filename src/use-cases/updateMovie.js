@@ -1,32 +1,35 @@
-const CreateMovie = require('../movies')
+const {createMovie} = require('../movies')
 exports.makeUpdateMovie = ({ movieDB }) => {
-    return async function updateMovie({title, ...changes}={}){
-        if (!title){
+    return async function updateMovie({ title, ...changes } = {}) {
+        if (!title) {
             throw new Error("insert title properly.")
         }
-        const existing = await movieDB.findByTitle({title})
-        if (!existing){
+        const temp = await movieDB.findByTitle( title )
+        const existing = temp[0]
+        if (!existing) {
             throw new RangeError("Movie not found.")
         }
-        const MovieInfo = CreateMovie({...existing, ...changes, lastupdated:null})
+        const MovieInfo = createMovie({ ...existing, ...changes, lastupdated: null })
+        const awardNest = MovieInfo.getAwards()
+        const movieSource = MovieInfo.getSource()
         const updated = await movieDB.update({
             title: MovieInfo.getTitle(),
             year: MovieInfo.getYear(),
-            direactors: MovieInfo.getDireactors(),
-            num_mfilx_comments: MovieInfo.getCommentsNum(),
-            awards:{
-                ip:awardNest.getWins(),
-                browser:awardNest.getNominations(),
-                referrer:awardNest.getText(),
+            directors: MovieInfo.getDirectors(),
+            num_mflix_comments: MovieInfo.getCommentsNum(),
+            awards: {
+                wins: awardNest.getWins(),
+                nominations: awardNest.getNominations(),
+                text: awardNest.getText(),
             },
-            source:{
-                ip:movieSource.getIP(),
-                browser:movieSource.getBrowser(),
-                referrer:movieSource.getReferrer(),
+            source: {
+                ip: movieSource.getIP(),
+                browser: movieSource.getBrowser(),
+                referrer: movieSource.getReferrer(),
             },
             lastupdated: MovieInfo.getLastupdated(),
             isDeleted: MovieInfo.getisDeleted(),
         })
-        return {...existing, ...updated}
+        return { ...existing, ...updated }
     }
 }

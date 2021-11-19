@@ -23,7 +23,7 @@ exports.makeExpressCallback = (controller) => {
             })
             .catch((e) => res.status(500).send({
                  error: 'An unknown error occured.',
-                 message: e,
+                 message: e.message,
                 }))
     }
 }
