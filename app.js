@@ -1,10 +1,8 @@
 const express = require('express');
 
 const app = express();
-const createError = require('http-errors');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const handlebars = require('express-handlebars');
 const router = require('./routers');
 
 const port = 4004;
