@@ -23,7 +23,6 @@ exports.makeRemoveMovie = ({ movieDB }) => {
     async function softDelete(movieInfo) {
         const toDelete = createMovie({...movieInfo, lastupdated : null})
         toDelete.deleted()
-        console.log(toDelete);
         await movieDB.update({
             title:toDelete.getTitle(),
             lastupdated:toDelete.getLastupdated(),
